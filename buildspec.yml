@@ -1,0 +1,46 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #git-credential-helper: yes
+
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    runtime-versions:
+      nodejs: 10
+      # name: version
+    #commands:
+      # - command
+      # - command
+  pre_build:
+    commands:
+      - echo Installing node dependencies...
+      - yarn install
+      - aws --version
+  build:
+    commands:
+      - echo Build started on `date`
+      - yarn $CLIENT_BUILD_COMMAND
+      - cp public/sitemap.xml dist/
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Syncing static files with S3 BUCKET...
+      - aws s3 sync ./dist $S3_BUCKET
+      - aws s3 cp ./dist/index.html $S3_BUCKET --cache-control no-store
+#artifacts:
+  #files:
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
