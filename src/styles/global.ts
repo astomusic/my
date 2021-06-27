@@ -8,16 +8,6 @@ const GlobalStyle = createGlobalStyle`
       background-color: #ff42c9;
       color: #fff;
     }
-    user-select: none;
-    touch-action: pan-x pan-y;
-  }
-
-  html { 
-    touch-action: none;
-  }
-
-  .number {
-    font-family: myriad-pro-semi-condensed, 'Noto Sans KR', sans-serif;
   }
 
   html, body, div, span, applet, object, iframe,
@@ -47,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
-    background-color: #f2f2f3;
+    background-color: #f2f2f2;
   }
   ol, ul, li {
     list-style: none;

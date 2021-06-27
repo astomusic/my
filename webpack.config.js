@@ -5,6 +5,7 @@ const styledComponentsTransformer = createStyledComponentsTransformer({ ssr: fal
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PACKAGE = require('./package.json');
+const Dotenv = require('dotenv-webpack');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const port = process.env.PORT || 8080;
@@ -127,6 +128,7 @@ module.exports = (env) => {
         files: 'src/**/*',
         extensions: ['ts', 'tsx'],
       }),
+      new Dotenv(),
       // new BundleAnalyzerPlugin(),
     ],
     devServer: {
